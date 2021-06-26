@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/alexgorshkov02/teamProfileGenerator/issues"
   },
-  "homepage": "https://github.com/alexgorshkov02/teamProfileGenerator#readme"
+  "homepage": "https://github.com/alexgorshkov02/teamProfileGenerator#readme",
+  "dependencies": {
+    "inquirer": "^8.1.1",
+    "jest": "^27.0.5"
+  }
 }

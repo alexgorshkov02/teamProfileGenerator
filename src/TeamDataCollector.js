@@ -13,8 +13,16 @@ class TeamDataCollector {
   async init() {
     return new Promise(async (resolve, reject) => {
       try {
-        const answers = await inquirer.prompt(Questions.questionsAboutManager);
-        const { name, employeeID, email, officeNumber } = answers;
+        const questions = new Questions("manager");
+
+        // Ask general questions
+        const generalAnswers = await inquirer.prompt(questions.generalQuestions());
+        const { name, employeeID, email } = generalAnswers;
+
+        // Ask the questions about a manager
+        const managerSpecificAnswers = await inquirer.prompt(questions.managerSpecificQuestions());
+        const { officeNumber } = managerSpecificAnswers;
+
         const manager = new Manager(name, employeeID, email, officeNumber);
         console.table(manager);
         this.employees.push(manager);
@@ -48,7 +56,7 @@ class TeamDataCollector {
           //   console.log(`"Add an intern" is chosen`);
           resolve(await this.addIntern());
         } else if (nextAction.action === "Finish building my team") {
-          resolve(this.finish());
+          resolve(this.employees);
         } else {
           console.log("Error: Something is wrong with the menu options");
         }
@@ -61,8 +69,16 @@ class TeamDataCollector {
   async addEngineer() {
     return new Promise(async (resolve, reject) => {
       try {
-        const answers = await inquirer.prompt(Questions.questionsAboutEngineer);
-        const { name, employeeID, email, gitHubUsername } = answers;
+        const questions = new Questions("engineer");
+        
+        // Ask general questions
+        const generalAnswers = await inquirer.prompt(questions.generalQuestions());
+        const { name, employeeID, email } = generalAnswers;
+
+        // Ask the questions about an engineer
+        const engineerSpecificAnswers = await inquirer.prompt(questions.engineerSpecificQuestions());
+        const { gitHubUsername } = engineerSpecificAnswers;
+
         const engineer = new Engineer(name, employeeID, email, gitHubUsername);
         console.table(engineer);
         this.employees.push(engineer);
@@ -77,8 +93,16 @@ class TeamDataCollector {
   async addIntern() {
     return new Promise(async (resolve, reject) => {
       try {
-        const answers = await inquirer.prompt(Questions.questionsAboutIntern);
-        const { name, employeeID, email, school } = answers;
+        const questions = new Questions("intern");
+
+        // Ask general questions
+        const generalAnswers = await inquirer.prompt(questions.generalQuestions());
+        const { name, employeeID, email } = generalAnswers;
+
+        // Ask the questions about an intern
+        const internSpecificAnswers = await inquirer.prompt(questions.internSpecificQuestions());
+        const { school } = internSpecificAnswers;
+
         const intern = new Intern(name, employeeID, email, school);
         console.table(intern);
         this.employees.push(intern);
@@ -87,10 +111,6 @@ class TeamDataCollector {
         reject(error);
       }
     });
-  }
-
-  finish() {
-    return this.employees;
   }
 }
 

@@ -1,5 +1,5 @@
 const fs = require("fs");
-const PageTemplate = require("../lib/PageTemplate.js");
+const PageTemplate = require("../src/PageTemplate.js");
 // const Employee = require("./Employee.js");
 
 class PageGenerator {

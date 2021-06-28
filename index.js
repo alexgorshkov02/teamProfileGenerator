@@ -1,6 +1,5 @@
-const TeamDataCollector = require("./lib/TeamDataCollector.js");
-const PageGenerator = require("./lib/PageGenerator.js");
-const PageTemplate = require("./lib/PageTemplate.js");
+const TeamDataCollector = require("./src/TeamDataCollector.js");
+const PageGenerator = require("./src/PageGenerator.js");
 
 const main = async () => {
   try {

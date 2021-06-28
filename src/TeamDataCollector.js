@@ -7,9 +7,6 @@ const Intern = require("../lib/Intern");
 
 class TeamDataCollector {
   constructor() {
-    this.manager = [];
-    this.engineers = [];
-    this.interns = [];
     this.employees = [];
   }
 
@@ -93,9 +90,6 @@ class TeamDataCollector {
   }
 
   finish() {
-    // console.log("Manager: ", this.manager);
-    // console.log("Engineers: ", this.engineers);
-    // console.log("Interns: ", this.interns);
     return this.employees;
   }
 }

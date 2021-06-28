@@ -1,14 +1,12 @@
-const TeamDataCollector = require("./lib/TeamDataCollector.js");
-const PageGenerator = require("./lib/PageGenerator.js");
-const PageTemplate = require("./lib/PageTemplate.js");
+const TeamDataCollector = require("./src/TeamDataCollector.js");
+const PageGenerator = require("./src/PageGenerator.js");
 
 const main = async () => {
   try {
-    const employeesList = await new TeamDataCollector().init();
-    console.log("List of all employees", employeesList);
-    
-    PageGenerator.writeToFile(employeesList);
+    const employees = await new TeamDataCollector().init();
+    console.log("List of all employees", employees);
 
+    PageGenerator.writeToFile(employees);
   } catch (error) {
     if (error.isTtyError) {
       console.log(

@@ -7,19 +7,29 @@ const Intern = require("../lib/Intern");
 
 class TeamDataCollector {
   constructor() {
-    this.manager = {};
-    this.engineers = [];
-    this.interns = [];
+    this.employees = [];
   }
 
   async init() {
     return new Promise(async (resolve, reject) => {
       try {
-        const answers = await inquirer.prompt(Questions.questionsAboutManager);
-        const { name, employeeID, email, officeNumber } = answers;
+        const questions = new Questions("manager");
+
+        // Ask general questions
+        const generalAnswers = await inquirer.prompt(
+          questions.generalQuestions()
+        );
+        const { name, employeeID, email } = generalAnswers;
+
+        // Ask the questions about a manager
+        const managerSpecificAnswers = await inquirer.prompt(
+          questions.managerSpecificQuestions()
+        );
+        const { officeNumber } = managerSpecificAnswers;
+
         const manager = new Manager(name, employeeID, email, officeNumber);
         console.table(manager);
-        this.manager = manager;
+        this.employees.push(manager);
         const results = await this.mainMenu();
         resolve(results);
       } catch (error) {
@@ -50,7 +60,7 @@ class TeamDataCollector {
           //   console.log(`"Add an intern" is chosen`);
           resolve(await this.addIntern());
         } else if (nextAction.action === "Finish building my team") {
-          resolve(this.finish());
+          resolve(this.employees);
         } else {
           console.log("Error: Something is wrong with the menu options");
         }
@@ -63,12 +73,25 @@ class TeamDataCollector {
   async addEngineer() {
     return new Promise(async (resolve, reject) => {
       try {
-        const answers = await inquirer.prompt(Questions.questionsAboutEngineer);
-        const { name, employeeID, email, gitHubUsername } = answers;
+        const questions = new Questions("engineer");
+
+        // Ask general questions
+        const generalAnswers = await inquirer.prompt(
+          questions.generalQuestions()
+        );
+        const { name, employeeID, email } = generalAnswers;
+
+        // Ask the questions about an engineer
+        const engineerSpecificAnswers = await inquirer.prompt(
+          questions.engineerSpecificQuestions()
+        );
+        const { gitHubUsername } = engineerSpecificAnswers;
+
         const engineer = new Engineer(name, employeeID, email, gitHubUsername);
         console.table(engineer);
-        this.engineers.push(engineer);
-        resolve(await this.mainMenu());
+        this.employees.push(engineer);
+        const returnToMainMenu = await this.mainMenu();
+        resolve(returnToMainMenu);
       } catch (error) {
         reject(error);
       }
@@ -78,27 +101,28 @@ class TeamDataCollector {
   async addIntern() {
     return new Promise(async (resolve, reject) => {
       try {
-        const answers = await inquirer.prompt(Questions.questionsAboutIntern);
-        const { name, employeeID, email, school } = answers;
+        const questions = new Questions("intern");
+
+        // Ask general questions
+        const generalAnswers = await inquirer.prompt(
+          questions.generalQuestions()
+        );
+        const { name, employeeID, email } = generalAnswers;
+
+        // Ask the questions about an intern
+        const internSpecificAnswers = await inquirer.prompt(
+          questions.internSpecificQuestions()
+        );
+        const { school } = internSpecificAnswers;
+
         const intern = new Intern(name, employeeID, email, school);
         console.table(intern);
-        this.interns.push(intern);
+        this.employees.push(intern);
         resolve(await this.mainMenu());
       } catch (error) {
         reject(error);
       }
     });
-  }
-
-  finish() {
-    // console.log("Manager: ", this.manager);
-    // console.log("Engineers: ", this.engineers);
-    // console.log("Interns: ", this.interns);
-    return {
-      manager: this.manager,
-      engineers: this.engineers,
-      interns: this.interns,
-    };
   }
 }
 

@@ -16,11 +16,15 @@ class TeamDataCollector {
         const questions = new Questions("manager");
 
         // Ask general questions
-        const generalAnswers = await inquirer.prompt(questions.generalQuestions());
+        const generalAnswers = await inquirer.prompt(
+          questions.generalQuestions()
+        );
         const { name, employeeID, email } = generalAnswers;
 
         // Ask the questions about a manager
-        const managerSpecificAnswers = await inquirer.prompt(questions.managerSpecificQuestions());
+        const managerSpecificAnswers = await inquirer.prompt(
+          questions.managerSpecificQuestions()
+        );
         const { officeNumber } = managerSpecificAnswers;
 
         const manager = new Manager(name, employeeID, email, officeNumber);
@@ -70,13 +74,17 @@ class TeamDataCollector {
     return new Promise(async (resolve, reject) => {
       try {
         const questions = new Questions("engineer");
-        
+
         // Ask general questions
-        const generalAnswers = await inquirer.prompt(questions.generalQuestions());
+        const generalAnswers = await inquirer.prompt(
+          questions.generalQuestions()
+        );
         const { name, employeeID, email } = generalAnswers;
 
         // Ask the questions about an engineer
-        const engineerSpecificAnswers = await inquirer.prompt(questions.engineerSpecificQuestions());
+        const engineerSpecificAnswers = await inquirer.prompt(
+          questions.engineerSpecificQuestions()
+        );
         const { gitHubUsername } = engineerSpecificAnswers;
 
         const engineer = new Engineer(name, employeeID, email, gitHubUsername);
@@ -96,11 +104,15 @@ class TeamDataCollector {
         const questions = new Questions("intern");
 
         // Ask general questions
-        const generalAnswers = await inquirer.prompt(questions.generalQuestions());
+        const generalAnswers = await inquirer.prompt(
+          questions.generalQuestions()
+        );
         const { name, employeeID, email } = generalAnswers;
 
         // Ask the questions about an intern
-        const internSpecificAnswers = await inquirer.prompt(questions.internSpecificQuestions());
+        const internSpecificAnswers = await inquirer.prompt(
+          questions.internSpecificQuestions()
+        );
         const { school } = internSpecificAnswers;
 
         const intern = new Intern(name, employeeID, email, school);

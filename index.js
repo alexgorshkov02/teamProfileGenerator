@@ -5,9 +5,8 @@ const main = async () => {
   try {
     const employees = await new TeamDataCollector().init();
     console.log("List of all employees", employees);
-    
-    PageGenerator.writeToFile(employees);
 
+    PageGenerator.writeToFile(employees);
   } catch (error) {
     if (error.isTtyError) {
       console.log(

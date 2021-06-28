@@ -4,10 +4,10 @@ const PageTemplate = require("./lib/PageTemplate.js");
 
 const main = async () => {
   try {
-    const employeesList = await new TeamDataCollector().init();
-    console.log("List of all employees", employeesList);
+    const employees = await new TeamDataCollector().init();
+    console.log("List of all employees", employees);
     
-    PageGenerator.writeToFile(employeesList);
+    PageGenerator.writeToFile(employees);
 
   } catch (error) {
     if (error.isTtyError) {

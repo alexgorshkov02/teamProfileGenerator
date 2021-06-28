@@ -25,7 +25,7 @@ class PageGenerator {
           <div class="card z-depth-3">
             <div class="card-content blue darken-1 white-text">
               <span class="card-title">${employee.getName()}</span>
-              <span class="card-title">${employee.getRole()}</span>
+              <span class="card-title">${employee.getIcon()} ${employee.getRole()}</span>
             </div>
     
             <div class="card-content blue-grey lighten-5">

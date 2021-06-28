@@ -6,8 +6,8 @@ const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 
 class TeamDataCollector {
-  constructor() {
-    this.employees = [];
+  constructor(employees = []) {
+    this.employees = employees;
   }
 
   async init() {
@@ -60,7 +60,7 @@ class TeamDataCollector {
           //   console.log(`"Add an intern" is chosen`);
           resolve(await this.addIntern());
         } else if (nextAction.action === "Finish building my team") {
-          resolve(this.employees);
+          resolve(this.getEmployees());
         } else {
           console.log("Error: Something is wrong with the menu options");
         }
@@ -123,6 +123,10 @@ class TeamDataCollector {
         reject(error);
       }
     });
+  }
+
+  getEmployees() {
+    return this.employees;
   }
 }
 

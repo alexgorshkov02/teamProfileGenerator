@@ -28,8 +28,8 @@ class TeamDataCollector {
         const { officeNumber } = managerSpecificAnswers;
 
         const manager = new Manager(name, employeeID, email, officeNumber);
-        console.table(manager);
         this.employees.push(manager);
+
         const results = await this.mainMenu();
         resolve(results);
       } catch (error) {
@@ -51,13 +51,10 @@ class TeamDataCollector {
             "Finish building my team",
           ],
         });
-        console.log(`Just log. The chosen action: ${nextAction.action}`);
-        // console.log(nextAction.action);
+
         if (nextAction.action === "Add an engineer") {
-          //   console.log(`"Add an engineer option" is chosen`);
           resolve(await this.addEngineer());
         } else if (nextAction.action === "Add an intern") {
-          //   console.log(`"Add an intern" is chosen`);
           resolve(await this.addIntern());
         } else if (nextAction.action === "Finish building my team") {
           resolve(this.getEmployees());
@@ -88,8 +85,8 @@ class TeamDataCollector {
         const { gitHubUsername } = engineerSpecificAnswers;
 
         const engineer = new Engineer(name, employeeID, email, gitHubUsername);
-        console.table(engineer);
         this.employees.push(engineer);
+
         const returnToMainMenu = await this.mainMenu();
         resolve(returnToMainMenu);
       } catch (error) {
@@ -116,15 +113,17 @@ class TeamDataCollector {
         const { school } = internSpecificAnswers;
 
         const intern = new Intern(name, employeeID, email, school);
-        console.table(intern);
         this.employees.push(intern);
-        resolve(await this.mainMenu());
+
+        const returnToMainMenu = await this.mainMenu();
+        resolve(returnToMainMenu);
       } catch (error) {
         reject(error);
       }
     });
   }
 
+  // Return all employees
   getEmployees() {
     return this.employees;
   }

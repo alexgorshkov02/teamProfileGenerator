@@ -10,13 +10,13 @@ test("creates a manager object", () => {
   expect(manager.role).toBe("Manager");
 });
 
-test("gets an manager's office number", () => {
+test("gets a manager's office number", () => {
   const manager = new Manager("John", 1, "test@test.com", 1);
 
   expect(manager.getOfficeNumber()).toEqual(expect.any(Number));
 });
 
-test("gets an intern's icon", () => {
+test("gets a manager's icon", () => {
   const manager = new Manager("John", 1, "test@test.com", 1);
 
   expect(manager.getIcon()).toEqual(

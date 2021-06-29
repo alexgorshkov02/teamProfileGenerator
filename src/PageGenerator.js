@@ -1,9 +1,8 @@
 const fs = require("fs");
 const PageTemplate = require("../src/PageTemplate.js");
-// const Employee = require("./Employee.js");
 
 class PageGenerator {
-  // Function to write the file
+  // Method to write the file
   static writeToFile(employees) {
     const initialPage = new PageTemplate().page();
     const footerPage = new PageTemplate().footer();
@@ -15,11 +14,11 @@ class PageGenerator {
     });
   }
 
+  // Method to create cards for all employees
   static renderEmployeeCard(employees) {
     let employeesCards = "";
-    // console.log("Employee: " + employees);
+
     employees.forEach((employee) => {
-      // console.log(employee);
       const employeeCard = `
       <div class="col s12 m5 l4 xl3" style="margin: auto;">
           <div class="card z-depth-3">
@@ -55,6 +54,7 @@ class PageGenerator {
     return employeesCards;
   }
 
+  // Method to create the page
   static generatePage(initialPage, footerPage, employees) {
     const employeesCards = this.renderEmployeeCard(employees);
     const page = initialPage + employeesCards + footerPage;

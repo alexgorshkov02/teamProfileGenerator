@@ -1,6 +1,6 @@
 const Intern = require("../lib/Intern.js");
 
-test("creates a intern object", () => {
+test("creates an intern object", () => {
   const intern = new Intern("John", 1, "test@test.com", "testSchool");
 
   expect(intern.name).toBe("John");

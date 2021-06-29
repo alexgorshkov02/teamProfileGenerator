@@ -1,4 +1,5 @@
 class PageTemplate {
+  // Initial part for the page
   page() {
     return `<!DOCTYPE html>
 <html lang="en">
@@ -22,6 +23,7 @@ class PageTemplate {
 `;
   }
 
+  // Rest part to close the tags
   footer() {
     return `</div>
 </div>

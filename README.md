@@ -42,7 +42,7 @@ Run "npm test" in the console from the app directory.
 
 ## Walkthrough Video
 
-[Link to the video](TODO:AddTheLink) 
+[Link to the video](https://drive.google.com/file/d/1-6yO8w40VoFW4K76LvQBte0DSvkqc_Dk/view) 
 
 
 ## Questions

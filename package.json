@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/alexgorshkov02/teamProfileGenerator#readme",
   "dependencies": {
-    "inquirer": "^8.1.1",
-    "jest": "^27.0.5"
+    "inquirer": "^8.1.1"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
   }
 }
